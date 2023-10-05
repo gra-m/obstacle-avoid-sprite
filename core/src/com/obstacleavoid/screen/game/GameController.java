@@ -14,9 +14,7 @@ import com.obstacleavoid.assets.AssetDescriptors;
 import com.obstacleavoid.common.GameManager;
 import com.obstacleavoid.config.GameConfig;
 import com.obstacleavoid.config.GameDifficulty;
-import com.obstacleavoid.entity.Background;
-import com.obstacleavoid.entity.Obstacle;
-import com.obstacleavoid.entity.Player;
+import com.obstacleavoid.entity.PlayerSprite;
 import com.obstacleavoid.util.Common;
 
 import static com.obstacleavoid.config.GameConfig.OBSTACLE_SIZE;
@@ -29,7 +27,7 @@ public class GameController
     private static final Logger LOG = new Logger(GameController.class.getName(), Logger.DEBUG);
 
     // fields
-    private Player player;
+    private PlayerSprite player;
     private int lives = GameConfig.PLAYER_INITIAL_LIVES;
     private Array< Obstacle > obstacles = new Array<>( );
     private float obstacleTimer;

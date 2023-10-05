@@ -18,9 +18,6 @@ import com.obstacleavoid.assets.AssetDescriptors;
 import com.obstacleavoid.common.GameManager;
 import com.obstacleavoid.config.GameConfig;
 import com.obstacleavoid.config.GameDifficulty;
-import com.obstacleavoid.entity.Background;
-import com.obstacleavoid.entity.Obstacle;
-import com.obstacleavoid.entity.Player;
 import com.obstacleavoid.util.Common;
 @Deprecated
 public class GameControllerOld
