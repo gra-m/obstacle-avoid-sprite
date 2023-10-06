@@ -41,7 +41,7 @@ public class PlayerSprite extends Sprite {
     // from what I can see, these are not needed if update bounds is called directly from drawdebug.:
 
 
-    @Override
+/*    @Override
     public void setPosition(float x, float y) {
         super.setPosition(x, y);
         updateBounds();
@@ -51,6 +51,6 @@ public class PlayerSprite extends Sprite {
     public void setSize(float width, float height) {
         super.setSize(width, height);
         updateBounds();
-    }
+    }*/
 
 }
