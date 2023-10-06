@@ -39,7 +39,6 @@ public class GameController
     private int score;
     private int displayScore;
     private Background background;
-    private Pool<ObstacleSprite> obstaclePool;
     private float startPlayerX = (GameConfig.WORLD_WIDTH - GameConfig.PLAYER_SIZE) / 2;
     private float startPlayerY = 1 - Common.DRAW_ADJUST_HALF_PLAYER;
     private Sound crashSound;
@@ -65,8 +64,6 @@ public class GameController
 
         // position player
         player.setPosition( startPlayerX, startPlayerY );
-        // create Obstacle Pool
-        obstaclePool = Pools.get(ObstacleSprite.class, 40);
     }
 
 
@@ -96,7 +93,7 @@ public class GameController
     }
 
     private void restart() {
-        obstaclePool.freeAll( obstacles );
+        factory.freeAll(obstacles);
         obstacles.clear();
         player.setPosition( startPlayerX, startPlayerY );
 
@@ -160,7 +157,7 @@ public class GameController
 
             if ( first.getY( ) <= minY ) {
                 obstacles.removeValue(first, true);
-                obstaclePool.free(first);
+                factory.free(first);
             }
         }
     }
@@ -176,7 +173,7 @@ public class GameController
 
             float obstacleY = GameConfig.WORLD_HEIGHT;
 
-            ObstacleSprite obstacle = obstaclePool.obtain();
+            ObstacleSprite obstacle = factory.obtain();
             GameDifficulty difficultyLevel = GameManager.INSTANCE.getGameDifficulty( );
             obstacle.setDifficulty(difficultyLevel.getObjectSpeed());
             obstacle.setPosition( obstacleX, obstacleY );
