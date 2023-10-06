@@ -39,7 +39,7 @@ public class GameController
     private int score;
     private int displayScore;
     private Background background;
-    private PoolObstacle<ObstacleSprite> obstaclePool;
+    private Pool<ObstacleSprite> obstaclePool;
     private float startPlayerX = (GameConfig.WORLD_WIDTH - GameConfig.PLAYER_SIZE) / 2;
     private float startPlayerY = 1 - Common.DRAW_ADJUST_HALF_PLAYER;
     private Sound crashSound;
@@ -66,8 +66,7 @@ public class GameController
         // position player
         player.setPosition( startPlayerX, startPlayerY );
         // create Obstacle Pool
-        Pool basePool = Pools.get(ObstacleSprite.class, 40);
-        obstaclePool= (PoolObstacle) basePool;
+        obstaclePool = Pools.get(ObstacleSprite.class, 40);
     }
 
 
