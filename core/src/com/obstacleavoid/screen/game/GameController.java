@@ -17,6 +17,7 @@ import com.obstacleavoid.config.GameConfig;
 import com.obstacleavoid.config.GameDifficulty;
 import com.obstacleavoid.entity.Background;
 import com.obstacleavoid.entity.Obstacle;
+import com.obstacleavoid.entity.ObstacleSprite;
 import com.obstacleavoid.entity.PlayerSprite;
 import com.obstacleavoid.util.Common;
 
@@ -32,13 +33,13 @@ public class GameController
     // fields
     private PlayerSprite player;
     private int lives = GameConfig.PLAYER_INITIAL_LIVES;
-    private Array< Obstacle > obstacles = new Array<>( );
+    private Array< ObstacleSprite > obstacles = new Array<>( );
     private float obstacleTimer;
     private float scoreTimer;
     private int score;
     private int displayScore;
     private Background background;
-    private Pool<Obstacle> obstaclePool;
+    private PoolObstacle<ObstacleSprite> obstaclePool;
     private float startPlayerX = (GameConfig.WORLD_WIDTH - GameConfig.PLAYER_SIZE) / 2;
     private float startPlayerY = 1 - Common.DRAW_ADJUST_HALF_PLAYER;
     private Sound crashSound;
@@ -65,7 +66,8 @@ public class GameController
         // position player
         player.setPosition( startPlayerX, startPlayerY );
         // create Obstacle Pool
-        obstaclePool = Pools.get(Obstacle.class, 40);
+        Pool basePool = Pools.get(ObstacleSprite.class, 40);
+        obstaclePool= (PoolObstacle) basePool;
     }
 
 
@@ -87,7 +89,7 @@ public class GameController
         
         if (!isGameOver()) {
             updatePlayer( );
-            //updateObstacles( delta );
+            updateObstacles( delta );
             updateScore( delta );
             updateDisplayScore( delta );
         }
@@ -109,13 +111,11 @@ public class GameController
     // private methods
     private boolean isPlayerCollidingWithObstacle( PlayerSprite player )
     {
-/*
-        for ( Obstacle ob : obstacles ) {
+        for ( ObstacleSprite ob : obstacles ) {
             if ( ob.notHitAlready() && ob.isPlayerColliding( player ) ) {
                 return true;
             }
         }
-        */
         return false;
     }
 
@@ -143,8 +143,8 @@ public class GameController
 
     private void updateObstacles( float delta )
     {
-        for ( Obstacle o : obstacles ) {
-            o.update( );
+        for ( ObstacleSprite o : obstacles ) {
+            o.updateBounds( );
         }
         createNewObstacle( delta );
         removePassedObstacles();
@@ -153,7 +153,7 @@ public class GameController
     private void removePassedObstacles( )
     {
         if ( obstacles.size > 0 ) {
-            Obstacle first = obstacles.first( );
+            ObstacleSprite first = obstacles.first( );
 
             float minY = -first.getWidth( );
 
@@ -175,7 +175,7 @@ public class GameController
 
             float obstacleY = GameConfig.WORLD_HEIGHT;
 
-            Obstacle obstacle = obstaclePool.obtain();
+            ObstacleSprite obstacle = obstaclePool.obtain();
             GameDifficulty difficultyLevel = GameManager.INSTANCE.getGameDifficulty( );
             obstacle.setDifficulty(difficultyLevel.getObjectSpeed());
             obstacle.setPosition( obstacleX, obstacleY );
@@ -210,7 +210,7 @@ public class GameController
         return lives;
     }
 
-    public Array<Obstacle> getObstacles()
+    public Array<ObstacleSprite> getObstacles()
     {
         return obstacles;
     }

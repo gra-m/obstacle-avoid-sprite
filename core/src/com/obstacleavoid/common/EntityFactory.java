@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.obstacleavoid.assets.AssetDescriptors;
 import com.obstacleavoid.assets.RegionNames;
+import com.obstacleavoid.entity.ObstacleSprite;
 import com.obstacleavoid.entity.PlayerSprite;
 
 
@@ -27,6 +28,11 @@ public class EntityFactory {
     public PlayerSprite createPlayer() {
         TextureRegion playerRegion = gamePlayAtlas.findRegion(RegionNames.PLAYER);
         return  new PlayerSprite(playerRegion);
+    }
+
+    public ObstacleSprite createObstacle() {
+        TextureRegion obstacleRegion = gamePlayAtlas.findRegion(RegionNames.OBSTACLE);
+        return new ObstacleSprite(obstacleRegion);
     }
 
 

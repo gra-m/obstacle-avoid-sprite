@@ -4,16 +4,19 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
-import com.obstacleavoid.config.GameConfig;
 
 public class BaseSprite extends Sprite {
 
+    private float x;
+    private float y;
     private Circle bounds;
     public BaseSprite(TextureRegion region, float boundsRadius, float width, float height){
         super(region);
-        bounds = new Circle(getX(), getY(), boundsRadius);
+        bounds = new Circle(this.getX(), this.getY(), boundsRadius);
         setSize(width, height);
     }
+
+    public BaseSprite() {}
 
     public Circle getBounds() {
         return bounds;
@@ -25,7 +28,7 @@ public class BaseSprite extends Sprite {
         updateBounds();
     }
 
-    private void updateBounds( )
+    public void updateBounds( )
     {
         if (bounds == null) {
             return;

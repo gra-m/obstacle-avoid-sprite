@@ -17,6 +17,7 @@ import com.obstacleavoid.assets.AssetDescriptors;
 import com.obstacleavoid.config.GameConfig;
 import com.obstacleavoid.entity.Background;
 import com.obstacleavoid.entity.Obstacle;
+import com.obstacleavoid.entity.ObstacleSprite;
 import com.obstacleavoid.entity.PlayerSprite;
 import com.obstacleavoid.util.GdxUtils;
 import com.obstacleavoid.util.ViewportUtils;
@@ -147,9 +148,9 @@ public class GameRenderer implements Disposable
         player.draw(batch);
         //batch.draw( playerRegion, player.getX(), player.getY(), player.getWidth(), player.getHeight());
 
-      /*  for (Obstacle ob: gameController.getObstacles()) {
-            batch.draw( obstacleRegion, ob.getX(), ob.getY(), ob.getWidth(), ob.getHeight());
-        } */
+        for (ObstacleSprite ob: gameController.getObstacles()) {
+            ob.draw(batch);
+        }
 
 
 

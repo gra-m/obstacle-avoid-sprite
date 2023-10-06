@@ -1,11 +1,9 @@
 package com.obstacleavoid.entity;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Circle;
 import com.obstacleavoid.config.GameConfig;
 
 public class PlayerSprite extends BaseSprite {
-    private Circle bounds;
 
     public PlayerSprite(TextureRegion region) {
         super(region, GameConfig.PLAYER_BOUNDS_RADIUS, GameConfig.PLAYER_SIZE, GameConfig.PLAYER_SIZE);
