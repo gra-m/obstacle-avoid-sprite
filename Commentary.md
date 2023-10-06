@@ -20,3 +20,28 @@ Replace the XKBOPTIONS definition in /etc/default/keyboard with
 XKBOPTIONS="ctrl:nocaps"
 
 Option "XkbOptions" "caps:swapescape"
+
+## Null pointer @ 151:
+![img.png](CommentaryResources/nullPointer151.png)
+
+Set size is called from init (constructor) @ 84, meaning SetSize calls updateBounds before they exist:
+
+```java
+
+	// Note the region is copied.
+	/** Creates a sprite based on a specific TextureRegion, the new sprite's region is a copy of the parameter region - altering
+	 * one does not affect the other */
+	public Sprite (TextureRegion region) {
+		setRegion(region);
+		setColor(1, 1, 1, 1);
+		setSize(region.getRegionWidth(), region.getRegionHeight());
+		setOrigin(width / 2, height / 2);
+	}
+```
+```java
+    @Override
+    public void setSize(float width, float height) {
+        super.setSize(width, height);
+        updateBounds();
+    }
+```
