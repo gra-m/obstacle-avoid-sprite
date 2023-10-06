@@ -204,13 +204,12 @@ public class GameRenderer implements Disposable
         renderer.setColor(Color.RED);
         PlayerSprite player = gameController.getPlayer();
         player.drawDebug( renderer );
-        /*
-        Array<Obstacle> obstacles = gameController.getObstacles();
 
+        Array<ObstacleSprite> obstacles = gameController.getObstacles();
 
-        for ( Obstacle o : obstacles ) {
+        for ( ObstacleSprite o : obstacles ) {
             o.drawDebug( renderer );
-        }*/
+        }
     }
 
 

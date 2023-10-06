@@ -175,6 +175,7 @@ public class GameController
             float obstacleY = GameConfig.WORLD_HEIGHT;
 
             ObstacleSprite obstacle = obstaclePool.obtain();
+            obstacle = factory.setObstacleRegion(obstacle);
             GameDifficulty difficultyLevel = GameManager.INSTANCE.getGameDifficulty( );
             obstacle.setDifficulty(difficultyLevel.getObjectSpeed());
             obstacle.setPosition( obstacleX, obstacleY );

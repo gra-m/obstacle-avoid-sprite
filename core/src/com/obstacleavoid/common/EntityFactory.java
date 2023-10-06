@@ -36,5 +36,8 @@ public class EntityFactory {
     }
 
 
-
+    public ObstacleSprite setObstacleRegion(ObstacleSprite obstacle) {
+       obstacle.setRegion(gamePlayAtlas.findRegion(RegionNames.OBSTACLE));
+       return obstacle;
+    }
 }

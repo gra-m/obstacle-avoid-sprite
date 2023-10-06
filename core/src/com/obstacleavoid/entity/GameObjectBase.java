@@ -2,6 +2,8 @@ package com.obstacleavoid.entity;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
+import com.obstacleavoid.config.GameConfig;
+
 @Deprecated
 public abstract class GameObjectBase
 {

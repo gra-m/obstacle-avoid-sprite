@@ -10,11 +10,11 @@ import com.obstacleavoid.config.GameConfig;
 public class ObstacleSprite extends BaseSprite implements Pool.Poolable {
 
     private boolean hitAlready;
-    private float objectSpeed = GameConfig.MEDIUM_OBSTACLE_SPEED;
 
     public ObstacleSprite() {
-        //
+        super(GameConfig.OBSTACLE_BOUNDS_RADIUS, GameConfig.OBSTACLE_SIZE, GameConfig.OBSTACLE_SIZE);
     }
+
     public ObstacleSprite(TextureRegion region) {
         super(region, GameConfig.OBSTACLE_BOUNDS_RADIUS, GameConfig.OBSTACLE_SIZE, GameConfig.OBSTACLE_SIZE);
     }
@@ -23,7 +23,6 @@ public class ObstacleSprite extends BaseSprite implements Pool.Poolable {
         Circle playerBounds = player.getBounds();
 
         if (player.getBounds() != null && this.getBounds() != null)
-
         hitAlready = Intersector.overlaps( playerBounds, this.getBounds() );
 
         return hitAlready;
@@ -34,7 +33,7 @@ public class ObstacleSprite extends BaseSprite implements Pool.Poolable {
     }
 
     public void setDifficulty(float objectSpeed) {
-        this.objectSpeed = objectSpeed;
+        this.ySpeed = objectSpeed;
     }
 
     @Override
