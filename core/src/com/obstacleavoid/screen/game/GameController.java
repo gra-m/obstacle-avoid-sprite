@@ -11,9 +11,12 @@ import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.Pools;
 import com.obstacleavoid.ObstacleAvoidGame;
 import com.obstacleavoid.assets.AssetDescriptors;
+import com.obstacleavoid.common.EntityFactory;
 import com.obstacleavoid.common.GameManager;
 import com.obstacleavoid.config.GameConfig;
 import com.obstacleavoid.config.GameDifficulty;
+import com.obstacleavoid.entity.Background;
+import com.obstacleavoid.entity.Obstacle;
 import com.obstacleavoid.entity.PlayerSprite;
 import com.obstacleavoid.util.Common;
 
@@ -42,16 +45,18 @@ public class GameController
 
     private final ObstacleAvoidGame obstacleAvoidGame;
     private final AssetManager assetManager;
+    private final EntityFactory factory;
 
     // constructors
-    public GameController( ObstacleAvoidGame game ){
+    public GameController( ObstacleAvoidGame game, EntityFactory entityFactory ){
         this.obstacleAvoidGame = game;
         this.assetManager = obstacleAvoidGame.getAssetManager();
+        this.factory = entityFactory;
         init();
     }
 
     private void init() {
-        player = new Player( );
+        player = factory.createPlayer();
         background = new Background();
         background.setPosition(0f, 0f);
         background.setSize(GameConfig.WORLD_WIDTH, GameConfig.WORLD_HEIGHT);
@@ -82,7 +87,7 @@ public class GameController
         
         if (!isGameOver()) {
             updatePlayer( );
-            updateObstacles( delta );
+            //updateObstacles( delta );
             updateScore( delta );
             updateDisplayScore( delta );
         }
@@ -102,14 +107,15 @@ public class GameController
     }
 
     // private methods
-    private boolean isPlayerCollidingWithObstacle( Player player )
+    private boolean isPlayerCollidingWithObstacle( PlayerSprite player )
     {
-
+/*
         for ( Obstacle ob : obstacles ) {
             if ( ob.notHitAlready() && ob.isPlayerColliding( player ) ) {
                 return true;
             }
         }
+        */
         return false;
     }
 
@@ -194,7 +200,7 @@ public class GameController
     }
 
     // Getters
-    public Player getPlayer()
+    public PlayerSprite getPlayer()
     {
         return player;
     }
@@ -204,7 +210,7 @@ public class GameController
         return lives;
     }
 
-    public Array< Obstacle > getObstacles()
+    public Array<Obstacle> getObstacles()
     {
         return obstacles;
     }

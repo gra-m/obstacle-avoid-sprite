@@ -12,4 +12,11 @@ A game object that describes almost everything
 * Origin is mapped relative to bottom left corner of Sprite
 
 ## Sprite mixes Model info (position rotation scale size) with view info (the texture we want to draw)
-* So Sprite is inappropriate if implementing design patterns where model and view are strictly separated. 
+* So Sprite is inappropriate if implementing design patterns where model and view are strictly separated.
+
+
+Replace the XKBOPTIONS definition in /etc/default/keyboard with
+
+XKBOPTIONS="ctrl:nocaps"
+
+Option "XkbOptions" "caps:swapescape"

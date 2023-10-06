@@ -18,6 +18,9 @@ import com.obstacleavoid.assets.AssetDescriptors;
 import com.obstacleavoid.common.GameManager;
 import com.obstacleavoid.config.GameConfig;
 import com.obstacleavoid.config.GameDifficulty;
+import com.obstacleavoid.entity.old.Background;
+import com.obstacleavoid.entity.old.Obstacle;
+import com.obstacleavoid.entity.old.Player;
 import com.obstacleavoid.util.Common;
 @Deprecated
 public class GameControllerOld
@@ -28,7 +31,7 @@ public class GameControllerOld
     // fields
     private Player player;
     private int lives = GameConfig.PLAYER_INITIAL_LIVES;
-    private Array< Obstacle > obstacles = new Array<>( );
+    private Array<Obstacle> obstacles = new Array<>( );
     private float obstacleTimer;
     private float scoreTimer;
     private int score;

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.utils.Logger;
 import com.obstacleavoid.ObstacleAvoidGame;
+import com.obstacleavoid.common.EntityFactory;
 import com.obstacleavoid.screen.menu.MenuScreen;
 
 
@@ -14,16 +15,18 @@ public class GameScreen implements Screen
     private final AssetManager assetManager;
     private  GameController controller;
     private GameRenderer renderer;
+    private EntityFactory entityFactory;
 
     public GameScreen( ObstacleAvoidGame game ) {
         this.obstacleAvoidGame = game;
         this.assetManager = obstacleAvoidGame.getAssetManager();
+        this.entityFactory = new EntityFactory(this.assetManager);
     }
 
     @Override
     public void show()
     {
-        this.controller = new GameController(obstacleAvoidGame);
+        this.controller = new GameController(obstacleAvoidGame, entityFactory);
         this.renderer = new GameRenderer(obstacleAvoidGame.getSpriteBatch(), assetManager, controller);
     }
 

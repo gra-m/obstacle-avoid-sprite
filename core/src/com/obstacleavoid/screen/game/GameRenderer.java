@@ -14,6 +14,9 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.obstacleavoid.assets.AssetDescriptors;
 import com.obstacleavoid.config.GameConfig;
+import com.obstacleavoid.entity.Background;
+import com.obstacleavoid.entity.Obstacle;
+import com.obstacleavoid.entity.PlayerSprite;
 import com.obstacleavoid.util.GdxUtils;
 import com.obstacleavoid.util.ViewportUtils;
 import com.obstacleavoid.util.debug.DebugCameraController;
@@ -91,7 +94,7 @@ public class GameRenderer implements Disposable
             System.out.println( "screen co-ordinates: " + screenTouchedCoOrd );
             System.out.println( "world co-ordinates: " + worldTouchedCoOrd );
 
-            Player player = gameController.getPlayer();
+            PlayerSprite player = gameController.getPlayer();
 
             worldTouchedCoOrd.x = ( MathUtils.clamp( worldTouchedCoOrd.x, 0,
                     GameConfig.WORLD_WIDTH - GameConfig.PLAYER_SIZE ) );
@@ -136,19 +139,20 @@ public class GameRenderer implements Disposable
         batch.begin();
 
         Background background = gameController.getBackground();
-        batch.draw( backgroundRegion, background.getX(), background.getY(), background.getWidth(),
-                background.getHeight());
+        //batch.draw( backgroundRegion, background.getX(), background.getY(), background.getWidth(),
+         //       background.getHeight());
 
-        Player player = gameController.getPlayer();
-        batch.draw( playerRegion, player.getX(), player.getY(), player.getWidth(), player.getHeight());
+        PlayerSprite player = gameController.getPlayer();
+        player.draw(batch);
+        //batch.draw( playerRegion, player.getX(), player.getY(), player.getWidth(), player.getHeight());
 
-        for (Obstacle ob: gameController.getObstacles()) {
+      /*  for (Obstacle ob: gameController.getObstacles()) {
             batch.draw( obstacleRegion, ob.getX(), ob.getY(), ob.getWidth(), ob.getHeight());
-        }
+        } */
+
 
 
         batch.end();
-
     }
 
     private void createDebugCameraController()
@@ -191,14 +195,15 @@ public class GameRenderer implements Disposable
 
     private void drawDebug()
     {
-        Player player = gameController.getPlayer();
+        PlayerSprite player = gameController.getPlayer();
+        player.drawDebug( renderer );
+        /*
         Array<Obstacle> obstacles = gameController.getObstacles();
 
-        player.drawDebug( renderer );
 
         for ( Obstacle o : obstacles ) {
             o.drawDebug( renderer );
-        }
+        }*/
     }
 
 

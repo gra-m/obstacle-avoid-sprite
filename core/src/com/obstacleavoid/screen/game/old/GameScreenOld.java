@@ -14,8 +14,8 @@ public class GameScreenOld implements Screen
     private static final Logger LOG = new Logger(GameScreenOld.class.getName(), Logger.DEBUG);
     private final ObstacleAvoidGame obstacleAvoidGame;
     private final AssetManager assetManager;
-    private GameController controller;
-    private GameRenderer renderer;
+    private GameControllerOld controller;
+    private GameRendererOld renderer;
 
     public GameScreenOld(ObstacleAvoidGame game ) {
         this.obstacleAvoidGame = game;
@@ -25,8 +25,8 @@ public class GameScreenOld implements Screen
     @Override
     public void show()
     {
-        this.controller = new GameController(obstacleAvoidGame);
-        this.renderer = new GameRenderer(obstacleAvoidGame.getSpriteBatch(), assetManager, controller);
+        this.controller = new GameControllerOld(obstacleAvoidGame);
+        this.renderer = new GameRendererOld(obstacleAvoidGame.getSpriteBatch(), assetManager, controller);
     }
 
     @Override
