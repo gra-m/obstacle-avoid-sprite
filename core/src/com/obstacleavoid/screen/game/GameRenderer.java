@@ -2,6 +2,7 @@ package com.obstacleavoid.screen.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -183,18 +184,23 @@ public class GameRenderer implements Disposable
     private void renderDebug()
     {
         viewport.apply();
+
+        Color oldColour = renderer.getColor().cpy();
+
         renderer.setProjectionMatrix( camera.combined );
         renderer.begin( ShapeRenderer.ShapeType.Line );
-
         drawDebug( );
-
         renderer.end( );
+
+        renderer.setColor(oldColour);
+
         ViewportUtils.drawGrid( viewport, renderer );
 
     }
 
     private void drawDebug()
     {
+        renderer.setColor(Color.RED);
         PlayerSprite player = gameController.getPlayer();
         player.drawDebug( renderer );
         /*

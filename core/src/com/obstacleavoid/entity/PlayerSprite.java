@@ -30,6 +30,9 @@ public class PlayerSprite extends Sprite {
 
     private void updateBounds( )
     {
+        if (bounds == null) {
+            return;
+        }
         float adjustmentAlignsCircleToTextureWidth = getWidth()/2f;
         float adjustmentAlignsCircleToTextureHeight = getHeight()/2f;
         bounds.setPosition(getX() + adjustmentAlignsCircleToTextureWidth, getY() + adjustmentAlignsCircleToTextureHeight );
