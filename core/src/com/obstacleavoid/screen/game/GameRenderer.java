@@ -17,6 +17,7 @@ import com.obstacleavoid.assets.AssetDescriptors;
 import com.obstacleavoid.config.GameConfig;
 import com.obstacleavoid.entity.Background;
 import com.obstacleavoid.entity.Obstacle;
+import com.obstacleavoid.entity.ObstacleSprite;
 import com.obstacleavoid.entity.PlayerSprite;
 import com.obstacleavoid.util.GdxUtils;
 import com.obstacleavoid.util.ViewportUtils;
@@ -42,10 +43,6 @@ public class GameRenderer implements Disposable
     private Viewport hudViewport;
     private BitmapFont font;
     private final GlyphLayout layout = new GlyphLayout( );
-    private TextureRegion playerRegion;
-    private TextureRegion obstacleRegion;
-    private TextureRegion backgroundRegion;
-
 
     // constructors
 
@@ -73,9 +70,6 @@ public class GameRenderer implements Disposable
         
         font = assetManager.get( AssetDescriptors.UI_FONT_32 );
 
-        backgroundRegion = gameplayAtlas.findRegion( BACKGROUND );
-        playerRegion = gameplayAtlas.findRegion( PLAYER );
-        obstacleRegion = gameplayAtlas.findRegion( OBSTACLE );
         createDebugCameraController( );
     }
     // public API
@@ -147,9 +141,9 @@ public class GameRenderer implements Disposable
         player.draw(batch);
         //batch.draw( playerRegion, player.getX(), player.getY(), player.getWidth(), player.getHeight());
 
-      /*  for (Obstacle ob: gameController.getObstacles()) {
-            batch.draw( obstacleRegion, ob.getX(), ob.getY(), ob.getWidth(), ob.getHeight());
-        } */
+        for (ObstacleSprite oS: gameController.getObstacles()) {
+            oS.draw(batch);
+        }
 
 
 
@@ -203,13 +197,13 @@ public class GameRenderer implements Disposable
         renderer.setColor(Color.RED);
         PlayerSprite player = gameController.getPlayer();
         player.drawDebug( renderer );
-        /*
-        Array<Obstacle> obstacles = gameController.getObstacles();
+
+        Array<ObstacleSprite> obstacles = gameController.getObstacles();
 
 
-        for ( Obstacle o : obstacles ) {
-            o.drawDebug( renderer );
-        }*/
+        for ( ObstacleSprite oS : obstacles ) {
+            oS.drawDebug( renderer );
+        }
     }
 
 

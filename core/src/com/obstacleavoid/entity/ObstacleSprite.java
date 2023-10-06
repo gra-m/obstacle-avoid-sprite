@@ -8,17 +8,17 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Pool;
+import com.obstacleavoid.config.GameConfig;
 import com.obstacleavoid.config.GameDifficulty;
 
-public class ObstacleSprite extends Sprite implements Pool.Poolable
+public class ObstacleSprite extends GameSpriteBase implements Pool.Poolable
 {
     private boolean hitAlready;
 
     private float ySpeed = GameDifficulty.MEDIUM.getObjectSpeed();
 
     public ObstacleSprite(TextureRegion region){
-        super(region);
-        super(OBSTACLE_BOUNDS_RADIUS);
+        super(region, GameConfig.OBSTACLE_BOUNDS_RADIUS);
         setSize( OBSTACLE_SIZE, OBSTACLE_SIZE );
     }
 
@@ -26,7 +26,7 @@ public class ObstacleSprite extends Sprite implements Pool.Poolable
         super.setY(  super.getY() - ySpeed);
     }
 
-    public boolean isPlayerColliding(Player player) {
+    public boolean isPlayerColliding(PlayerSprite player) {
         Circle playerBounds = player.getBounds();
 
         hitAlready = Intersector.overlaps( playerBounds, getBounds() );
