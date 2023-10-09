@@ -135,7 +135,7 @@ public class GameRenderer implements Disposable
 
         Background background = gameController.getBackground();
         //batch.draw( backgroundRegion, background.getX(), background.getY(), background.getWidth(),
-         //       background.getHeight());
+               // background.getHeight());
 
         PlayerSprite player = gameController.getPlayer();
         player.draw(batch);

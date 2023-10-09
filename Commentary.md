@@ -45,3 +45,9 @@ Set size is called from init (constructor) @ 84, meaning SetSize calls updateBou
         updateBounds();
     }
 ```
+
+# 01f798e9f23da6eb999b6a9a17ee6cb742f50e28
+* Have left this project here, I have heard enough arguments against to not want to use Sprite.
+  * I did not implement background sprite.
+  * I left the app with only one call to update bounds, I think this is resposible for the flashing of bounds following collision.
+  * Will update these if required for Obstacle avoid 2D. See 153-155 to remediate the above.
